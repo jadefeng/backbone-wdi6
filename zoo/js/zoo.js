@@ -22,12 +22,49 @@ var Zoo = Backbone.Collection.extend ({
 });
 
 var ZooView = Backbone.View.extend( {
+	el: '#main', // This makes a JQ $this element 
+	initialize: function () {
 
+	},
+	events: { 	// events to do with the view happens in the events itself!
+		'click h2': 'greeting'			// event + selector : run function
+	},
+	render: function() {
+		var view = this;
+		view.$el.empty();
+		view.$el.append('<h2> Our Menagerie </h2>');
+		this.collection.each(function(animal) { // Goes through each animal in its collection and renders them 
+			var $p = $('<p/>');
+			$p.text(animal.get('type'));
+			view.$el.append($p);
+		});	
+	},
+	greeting: function() {
+		alert("You clicked the heading!");
+	}
 });
 
-var animal1 = new Animal({type: 'giraffe', ecosystel: 'savannah'});
-var animal2 = new Animal({type: 'tiger', ecosystel: 'forest'});
-var animal3 = new Animal({type: 'frog', ecosystel: 'pond'});
+var animal1 = new Animal({type: 'giraffe', ecosystem: 'savannah'});
+var animal2 = new Animal({type: 'tiger', ecosystem: 'forest'});
+var animal3 = new Animal({type: 'frog', ecosystem: 'pond'});
 
 var weBoughtAZoo = new Zoo([animal1, animal2, animal3]);
 console.log(weBoughtAZoo.models);
+
+
+var AppRouter = Backbone.Router.extend({
+	routes: {
+		'': 'index', 			// Routes that are supported
+		'animals/:id': 'viewAnimal'
+	},
+	index: function() {
+		console.log("You reached the root page.");
+		var zooView = new ZooView({collection: weBoughtAZoo});
+		zooView.render();
+	}	
+});
+
+$(document).ready(function() {
+
+
+});
