@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Backbone Blog</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/handlebars.js"></script>	
+	<script type="text/javascript" src="js/underscore.js"></script>	
+	<script type="text/javascript" src="js/backbone.js"></script>
+	<script type="text/javascript" src="js/blog.js"></script>	
+
+	<link rel="stylesheet" type="text/css" href="css/blog.css">
+</head>
+<body>
+<div class="container">
+<h3> <a href="#"> Ebola Blog </a> </h3> <!-- Sends you back to what is behind the #, which is nothing -->
+
+	<div id="main"> </div>
+
+</div>
+
+<script type="template/html_anythingbutjavascript" id="appView">
+	<h1> Recent Posts </h1>
+	<ul id="posts"> </ul>  <!-- // This is where we draw out the views for the posts	-->
+
+</script>
+
+<script type="template/handlebars" id="postListView"> <!-- //ID is the same name as the view -->
+	{{ title }}
+</script>
+
+<script type="template/handlebars" id="postView">
+	<div class="post">
+		<h2> {{title}}</h2>
+		<p> {{ content }} </p> 
+	</div>
+
+</script>
+</body>
+</html>
